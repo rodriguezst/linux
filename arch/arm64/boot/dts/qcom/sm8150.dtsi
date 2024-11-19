@@ -2088,7 +2088,7 @@
 			lanes-per-direction = <2>;
 			#reset-cells = <1>;
 			resets = <&gcc GCC_UFS_PHY_BCR>;
-			reset-names = "rst";
+			reset-names = "core_reset";
 
 			iommus = <&apps_smmu 0x300 0>;
 
@@ -2117,11 +2117,11 @@
 				<0 0>,
 				<0 0>,
 				<37500000 300000000>,
+				<37500000 300000000>,
 				<0 0>,
 				<0 0>,
 				<0 0>,
-				<0 0>,
-				<0 300000000>;
+				<0 0>;
 
 			status = "disabled";
 		};
