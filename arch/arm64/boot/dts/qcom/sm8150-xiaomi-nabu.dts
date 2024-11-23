@@ -811,7 +811,7 @@
 };
 
 &remoteproc_slpi {
- status = "okay";
+ status = "disabled";
  firmware-name = "qcom/sm8150/xiaomi/nabu/slpi_nb.mbn";
 };
 
