@@ -815,6 +815,11 @@
  firmware-name = "qcom/sm8150/xiaomi/nabu/slpi_nb.mbn";
 };
 
+&venus {
+	status = "okay";
+	firmware-name = "qcom/sm8150/xiaomi/nabu/venus.mbn";
+};
+
 &sound {
 	compatible = "qcom,sm8150-sndcard";
 	pinctrl-0 = <&quat_tdm_active

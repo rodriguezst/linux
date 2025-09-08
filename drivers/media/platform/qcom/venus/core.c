@@ -961,6 +961,59 @@ static const struct reg_val sm8250_reg_preset[] = {
 	{ 0xb0088, 0 },
 };
 
+static const struct freq_tbl sm8150_freq_table[] = {
+	{ 0, 380000000 },
+	{ 0, 444000000 },
+	{ 0, 533000000 },
+	{ 0, 598000000 },
+};
+
+static const struct bw_tbl sm8150_bw_table_enc[] = {
+	{ 1944000, 1954000, 0, 3711000, 0 },	/* 3840x2160@60 */
+	{  972000,  996000, 0, 1905000, 0 },	/* 3840x2160@30 */
+	{  489600,  645000, 0,  977000, 0 },	/* 1920x1080@60 */
+	{  244800,  332000, 0,  498000, 0 },	/* 1920x1080@30 */
+};
+
+static const struct bw_tbl sm8150_bw_table_dec[] = {
+	{ 2073600, 2403000, 0, 4113000, 0 },	/* 4096x2160@60 */
+	{ 1036800, 1224000, 0, 2079000, 0 },	/* 4096x2160@30 */
+	{  489600,  812000, 0,  998000, 0 },	/* 1920x1080@60 */
+	{  244800,  416000, 0,  509000, 0 },	/* 1920x1080@30 */
+};
+
+static const struct venus_resources sm8150_res = {
+	.freq_tbl = sm8150_freq_table,
+	.freq_tbl_size = ARRAY_SIZE(sm8150_freq_table),
+	.bw_tbl_enc = sm8150_bw_table_enc,
+	.bw_tbl_enc_size = ARRAY_SIZE(sm8150_bw_table_enc),
+	.bw_tbl_dec = sm8150_bw_table_dec,
+	.bw_tbl_dec_size = ARRAY_SIZE(sm8150_bw_table_dec),
+	.clks = {"core", "iface", "bus" },
+	.clks_num = 3,
+	.vcodec0_clks = { "vcodec0_core" },
+	.vcodec1_clks = { "vcodec1_core" },
+	.vcodec_clks_num = 1,
+	.vcodec_pmdomains = (const char *[]) { "venus", "vcodec0", "vcodec1" },
+	.vcodec_pmdomains_num = 3,
+	.opp_pmdomain = (const char *[]) { "cx" },
+	.vcodec_num = 2,
+	.max_load = 7833600,
+	.hfi_version = HFI_VERSION_4XX,
+	.vpu_version = VPU_VERSION_AR50,
+	.vmem_id = VIDC_RESOURCE_NONE,
+	.vmem_size = 0,
+	.vmem_addr = 0,
+	.dma_mask = 0xe0000000 - 1,
+	.cp_start = 0,
+	.cp_size = 0x70800000,
+	.cp_nonpixel_start = 0x1000000,
+	.cp_nonpixel_size = 0x24800000,
+	.fwname = "qcom/venus-5.4/venus.mbn",
+	.dec_nodename = "video-decoder",
+	.enc_nodename = "video-encoder",
+};
+
 static const struct venus_resources sm8250_res = {
 	.freq_tbl = sm8250_freq_table,
 	.freq_tbl_size = ARRAY_SIZE(sm8250_freq_table),
@@ -1066,6 +1119,7 @@ static const struct of_device_id venus_dt_match[] = {
 	{ .compatible = "qcom,sdm845-venus-v2", .data = &sdm845_res_v2, },
 	{ .compatible = "qcom,sc7180-venus", .data = &sc7180_res, },
 	{ .compatible = "qcom,sc7280-venus", .data = &sc7280_res, },
+	{ .compatible = "qcom,sm8150-venus", .data = &sm8150_res, },
 	{ .compatible = "qcom,sm8250-venus", .data = &sm8250_res, },
 	{ }
 };
