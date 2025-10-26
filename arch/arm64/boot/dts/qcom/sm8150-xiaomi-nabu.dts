@@ -57,6 +57,15 @@
 			ecc-size = <16>;
 			no-map;
 		};
+
+		framebuffer0: framebuffer@9c000000 {
+			compatible = "simple-framebuffer";
+			reg = <0x0 0x9c000000 0x0 0x02400000>;
+			width = <1600>;
+			height = <2560>;
+			stride = <(1600 * 4)>;
+			format = "a8r8g8b8";
+		};
 	};
 
 	battery: battery {
